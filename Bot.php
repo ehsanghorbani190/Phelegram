@@ -11,13 +11,13 @@ final class Bot
         $this->api = 'https://api.telegram.org/bot'.$TOKEN.'/';
     }
     //main Commands
-    public function getMe()
+    public function getMe() :stdClass
     {
-        return json_encode(file_get_contents($this->method('getMe')));
+        return json_decode(file_get_contents($this->method('getMe')));
     }
-    public function getUpdates() 
+    public function getUpdates() :stdClass
     {
-        return file_get_contents($this->method('getUpdates'));
+        return json_decode(file_get_contents($this->method('getUpdates')));
     }
     //make methods easy to use
     private function method(string $method, array $params = null): string
