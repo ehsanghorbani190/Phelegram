@@ -30,6 +30,10 @@ final class Bot
         ]));
         return ($res != false) ? true : false;
     }
+    public function getFile(string $fileID , string $fileName){
+        $fileData = json_decode(file_get_contents($this->method("getFile" , ['file_id' => $fileID])));
+        copy("https://api.telegram.org/file/bot".$this->token."/". $fileData->result->file_path, __DIR__."/".$fileName);
+    }
     //make methods easy to use
     private function method(string $method, array $params = null): string
     {
@@ -43,6 +47,12 @@ final class Bot
                 }
             }
         }
+        return $res;
+    }
+    //testing functions 
+    public static function storeInJson(stdClass $update) : bool{
+        $file = fopen($update->update_id.".json" , 'w');
+        $res = fwrite($file,json_encode($update));
         return $res;
     }
 }
