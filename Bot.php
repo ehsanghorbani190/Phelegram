@@ -1,5 +1,6 @@
 <?php
-
+namespace Bot;
+use env\varLoader\env;
 //Bot class
 final class Bot
 {
@@ -7,10 +8,10 @@ final class Bot
     private $useWebhook;
     private $debugID;
 
-    public function __construct(string $TOKEN, string $debugID = null , bool $useWebhook = true)
+    public function __construct(string $debugID = null , bool $useWebhook = true)
     {
-        $this->token = $TOKEN;
-        define('API', 'https://api.telegram.org/bot'.$TOKEN.'/');
+        $this->token = env::var("TOKEN");
+        define('API', 'https://api.telegram.org/bot'.$this->token.'/');
         $this->useWebhook = $useWebhook;
         if (null !== $debugID) {
             $this->debugID = $debugID;
