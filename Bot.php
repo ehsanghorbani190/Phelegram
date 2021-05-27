@@ -1,6 +1,7 @@
 <?php
 namespace Bot;
 use env\varLoader\env;
+use Types\Update\Update;
 //Bot class
 final class Bot
 {
@@ -19,12 +20,12 @@ final class Bot
     }
 
     //main Commands
-    public function getMe(): stdClass
+    public function getMe(): Update
     {
         return json_decode(file_get_contents($this->method('getMe')));
     }
 
-    public function getUpdates(): stdClass
+    public function getUpdates(): Update
     {
         $destination = ($this->useWebhook) ? 'php://input' : $this->method('getUpdates');
 
@@ -46,7 +47,7 @@ final class Bot
         $fileData = json_decode(file_get_contents($this->method('getFile', ['file_id' => $fileID])));
         copy('https://api.telegram.org/file/bot'.$this->token.'/'.$fileData->result->file_path, __DIR__.'/'.$fileName);
     }
-    public function sendPhotoByID(string $fileID , string $chatID , string $caption = '') : stdClass
+    public function sendPhotoByID(string $fileID , string $chatID , string $caption = '') : Update
     {
         return json_decode(file_get_contents($this->method('sendPhoto', [
             'chat_id' => $chatID,
@@ -55,7 +56,7 @@ final class Bot
         ])));
     }
     //testing functions
-    public static function storeInJson(stdClass $update): bool
+    public static function storeInJson(Update $update): bool
     {
         $file = fopen($update->update_id.'.json', 'w');
 
