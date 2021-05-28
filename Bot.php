@@ -1,9 +1,10 @@
 <?php
 namespace Bot;
-use env\varLoader\env;
+use env\env;
 use Types\Update\Update;
+use Types\File\File;
 //Bot class
-final class Bot
+class Bot
 {
     private $token;
     private $useWebhook;
@@ -45,7 +46,8 @@ final class Bot
     public function getFile(string $fileID, string $fileName)
     {
         $fileData = json_decode(file_get_contents($this->method('getFile', ['file_id' => $fileID])));
-        copy('https://api.telegram.org/file/bot'.$this->token.'/'.$fileData->result->file_path, __DIR__.'/'.$fileName);
+        $file = new File($fileData);
+        $file->download();
     }
     public function sendPhotoByID(string $fileID , string $chatID , string $caption = '') : Update
     {
