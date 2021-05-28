@@ -1,5 +1,5 @@
 <?php
-namespace env\varLoader;
+namespace env;
 
 final class env
 {
