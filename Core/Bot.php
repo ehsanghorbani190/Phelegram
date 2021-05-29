@@ -3,6 +3,7 @@ namespace Core;
 use Utilities\env;
 use Core\Types\Update;
 use Core\Types\File;
+use stdClass;
 //Bot class
 class Bot
 {
@@ -26,7 +27,7 @@ class Bot
         return json_decode(file_get_contents($this->method('getMe')));
     }
 
-    public function getUpdates(): Update
+    public function getUpdates(): stdClass
     {
         $destination = ($this->useWebhook) ? 'php://input' : $this->method('getUpdates');
 
