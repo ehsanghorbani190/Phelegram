@@ -1,5 +1,5 @@
 <?php
-namespace Core\Types;
+namespace TelegramBot\Core\Types;
 use stdClass;
 class Update{
     public $id;
