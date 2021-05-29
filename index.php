@@ -1,3 +1,3 @@
 <?php
-require_once(__DIR__ ."/Bot.php");
+use Core\Bot;
 //main executable program 
