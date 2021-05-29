@@ -1,9 +1,8 @@
 <?php
-namespace Core;
-use Utilities\env;
-use Core\Types\Update;
-use Core\Types\File;
-use stdClass;
+namespace TelegramBot\Core;
+use TelegramBot\Utilities\env;
+use TelegramBot\Core\Types\Update;
+use TelegramBot\Core\Types\File;
 //Bot class
 class Bot
 {

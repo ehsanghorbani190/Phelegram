@@ -1,11 +1,11 @@
 <?php
-namespace Utilities;
+namespace TelegramBot\Utilities;
 
 final class env
 {
     public static function var(string $varName): string
     {
-        $envFile = fopen('./../.env', 'r');
+        $envFile = fopen(dirname(__DIR__).'/.env', 'r');
         if (!$envFile) {
             return 'env file not found';
         }

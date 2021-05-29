@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\Types;
+namespace TelegramBot\Core\Types;
 
-use Utilities\env;
+use TelegramBot\Utilities\env;
 use stdClass;
 
 class File

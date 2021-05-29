@@ -1,6 +1,6 @@
 <?php
-use Core\Bot;
+namespace TelegramBot;
+require("./vendor/autoload.php");
+use TelegramBot\Core\Bot;
 //main executable program 
 $bot = new Bot();
-//$update = $bot->getUpdates();
-$bot->sendMessage('HELLO' , '1442746736');

@@ -1,0 +1,17 @@
+{
+    "name": "timerunner2359/telegrambot",
+    "description": "A feature-rich & simple solution for telegram bots",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Ehsan Ghorbani",
+            "email": "ehsanghorbani190@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "TelegramBot\\" : "./"
+        }
+    }
+}
