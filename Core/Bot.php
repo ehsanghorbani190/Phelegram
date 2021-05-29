@@ -26,7 +26,7 @@ class Bot
         return json_decode(file_get_contents($this->method('getMe')));
     }
 
-    public function getUpdates(): stdClass
+    public function getUpdates(): Update
     {
         $destination = ($this->useWebhook) ? 'php://input' : $this->method('getUpdates');
 
