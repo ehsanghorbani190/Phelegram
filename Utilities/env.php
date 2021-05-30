@@ -12,7 +12,8 @@ final class env
         while (!feof($envFile)) {
             $line = fgets($envFile);
             if (false !== strstr($line, '$'.ucwords(trim($varName)))) {
-                return explode('=', $line)[1];
+                $var =  explode('=', $line)[1];
+                return str_replace("\n" , '' , $var);
             }
         }
 
