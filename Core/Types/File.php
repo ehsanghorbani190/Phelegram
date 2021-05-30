@@ -3,6 +3,7 @@
 namespace TelegramBot\Core\Types;
 
 use TelegramBot\Utilities\env;
+use TelegramBot\Utilities\Curl;
 use stdClass;
 
 class File
@@ -43,9 +44,12 @@ class File
     /**
      * @param fileName fileName to save file into. saves file into id if not passed
      */
-    public function download(string $fileName = null)
+    public function download(string $fileName = null) : string
     {
         $name = (null !== $fileName) ? $fileName : $this->getID();
-        copy('https://api.telegram.org/file/bot'.env::var('TOKEN').'/'.$this->getPath(), dirname(__DIR__).'/Storage/'.$name);
+        $path = 'https://api.telegram.org/file/bot'.env::var('TOKEN').'/'.$this->getPath();
+        $handle = new Curl();
+        $res = $handle->downloadFromTo($path,$name);
+        return ($res != null) ? $res : "Error while downloading" ; 
     }
 }
