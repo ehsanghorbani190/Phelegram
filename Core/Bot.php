@@ -1,8 +1,11 @@
 <?php
+
 namespace TelegramBot\Core;
-use TelegramBot\Utilities\env;
-use TelegramBot\Core\Types\Update;
+
 use TelegramBot\Core\Types\File;
+use TelegramBot\Core\Types\Update;
+use TelegramBot\Utilities\env;
+
 //Bot class
 class Bot
 {
@@ -10,14 +13,12 @@ class Bot
     private $useWebhook;
     private $debugID;
 
-    public function __construct(string $debugID = null , bool $useWebhook = true)
+    public function __construct(string $debugID = null, bool $useWebhook = true)
     {
-        $this->token = env::var("TOKEN");
+        $this->token = env::var('TOKEN');
         define('API', 'https://api.telegram.org/bot'.$this->token.'/');
         $this->useWebhook = $useWebhook;
-        if (null !== $debugID) {
-            $this->debugID = $debugID;
-        }
+        $this->debugID = $debugID;
     }
 
     //main Commands
@@ -49,14 +50,16 @@ class Bot
         $file = new File($fileData);
         $file->download();
     }
-    public function sendPhotoByID(string $fileID , string $chatID , string $caption = '') : Update
+
+    public function sendPhotoByID(string $fileID, string $chatID, string $caption = ''): Update
     {
         return json_decode(file_get_contents($this->method('sendPhoto', [
             'chat_id' => $chatID,
             'photo' => $fileID,
-            'caption' => $caption
+            'caption' => $caption,
         ])));
     }
+
     //testing functions
     public static function storeInJson(Update $update): bool
     {
@@ -67,11 +70,14 @@ class Bot
 
     public function debug(string $text): bool
     {
-        return $this->sendMessage("***DEBUG LOG***".PHP_EOL.$text, $this->debugID);
+        return ($this->debugID) ? $this->sendMessage('***DEBUG LOG***'.chr(10).$text, $this->debugID) : false;
     }
-    public function setDebugID(string $debugID){
+
+    public function setDebugID(string $debugID)
+    {
         $this->debugID = $debugID;
     }
+
     //make methods easy to use
     private function method(string $method, array $params = null): string
     {
