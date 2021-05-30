@@ -5,13 +5,14 @@ namespace TelegramBot\Core;
 use TelegramBot\Core\Types\File;
 use TelegramBot\Core\Types\Update;
 use TelegramBot\Utilities\env;
-
+use TelegramBot\Utilities\Curl;
 //Bot class
 class Bot
 {
     private $token;
     private $useWebhook;
     private $debugID;
+    private $request;
 
     public function __construct(string $debugID = null, bool $useWebhook = true)
     {
@@ -19,24 +20,25 @@ class Bot
         define('API', 'https://api.telegram.org/bot'.$this->token.'/');
         $this->useWebhook = $useWebhook;
         $this->debugID = $debugID;
+        $this->request = new Curl();
     }
 
     //main Commands
     public function getMe(): Update
     {
-        return json_decode(file_get_contents($this->method('getMe')));
+        return json_decode($this->request->get($this->method("getMe")));
     }
 
     public function getUpdates(): Update
     {
         $destination = ($this->useWebhook) ? 'php://input' : $this->method('getUpdates');
 
-        return json_decode(file_get_contents($destination));
+        return json_decode($this->request->get($destination));
     }
 
     public function sendMessage(string $text, string $chatId): bool
     {
-        $res = file_get_contents($this->method('sendMessage', [
+        $res = $this->request->get($this->method('sendMessage', [
             'chat_id' => $chatId,
             'text' => $text,
         ]));
@@ -46,14 +48,14 @@ class Bot
 
     public function getFile(string $fileID, string $fileName)
     {
-        $fileData = json_decode(file_get_contents($this->method('getFile', ['file_id' => $fileID])));
+        $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
         $file = new File($fileData);
         $file->download();
     }
 
     public function sendPhotoByID(string $fileID, string $chatID, string $caption = ''): Update
     {
-        return json_decode(file_get_contents($this->method('sendPhoto', [
+        return json_decode($this->request->get($this->method('sendPhoto', [
             'chat_id' => $chatID,
             'photo' => $fileID,
             'caption' => $caption,
