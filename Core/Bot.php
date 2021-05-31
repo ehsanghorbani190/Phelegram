@@ -10,16 +10,14 @@ use TelegramBot\Utilities\Curl;
 class Bot
 {
     private $token;
-    private $useWebhook;
     private $debugID;
     private $request;
 
-    public function __construct(string $debugID = null, bool $useWebhook = true)
+    public function __construct()
     {
         $this->token = env::var('TOKEN');
         define('API', 'https://api.telegram.org/bot'.$this->token.'/');
-        $this->useWebhook = $useWebhook;
-        $this->debugID = $debugID;
+        $this->debugID = env::var('DEBUG');
         $this->request = new Curl();
     }
 
@@ -72,7 +70,7 @@ class Bot
 
     public function debug(string $text): bool
     {
-        return ($this->debugID) ? $this->sendMessage('***DEBUG LOG***'.chr(10).$text, $this->debugID) : false;
+        return ($this->debugID != "null") ? $this->sendMessage('***DEBUG LOG***'.chr(10).$text, $this->debugID) : false;
     }
 
     public function setDebugID(string $debugID)
