@@ -17,7 +17,7 @@ class Sql
         $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
-    public function InsertInto(string $table, array $data): bool
+    public function insertInto(string $table, array $data): bool
     {
         if (empty($data)) {
             return false;

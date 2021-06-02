@@ -43,7 +43,7 @@ class Bot
         $res = json_decode($this->request->get($this->method("getUpdates", $options)));
         $res = $res->result;
         $id = end($res)->update_id;
-        $sql->InsertInto('Updates' , ['id' => $id]);
+        $sql->insertInto('Updates' , ['id' => $id]);
         // $updates = [];
         // foreach ($res as $result) {
         //     $updates[] = new Update($result);
