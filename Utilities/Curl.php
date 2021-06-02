@@ -17,7 +17,7 @@ final class Curl
     {
         try {
             curl_setopt($this->handle, CURLOPT_URL, $url);
-            curl_setopt($this->hanlde, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, 1);
             if (!empty($options)) {
                 curl_setopt_array($this->handle, $options);
             }
