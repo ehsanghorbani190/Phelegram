@@ -6,6 +6,7 @@ use TelegramBot\Core\Types\File;
 use TelegramBot\Core\Types\Update;
 use TelegramBot\Utilities\env;
 use TelegramBot\Utilities\Curl;
+use TelegramBot\Utilities\Sql;
 //Bot class
 class Bot
 {
@@ -27,13 +28,28 @@ class Bot
         return json_decode($this->request->get($this->method("getMe")));
     }
 
-    public function getUpdates(): Update
+    public function getUpdateFromWebhook(): Update
     {
-        $destination = ($this->useWebhook) ? 'php://input' : $this->method('getUpdates');
-
-        return json_decode($this->request->get($destination));
+        return json_decode($this->request->get("php://input"));
     }
 
+    public function getUpdates(int $limit = null) : array
+    {
+        $sql = new Sql();
+        $last = end($sql->selectFieldsFrom("Updates"))['id'];
+        $options = [];
+        if($last != null) $options["offset"] =  $last + 1;
+        if($limit != null) $options['limit'] = $limit;
+        $res = json_decode($this->request->get($this->method("getUpdates", $options)));
+        $res = $res->result;
+        $id = end($res)->update_id;
+        $sql->InsertInto('Updates' , ['id' => $id]);
+        // $updates = [];
+        // foreach ($res as $result) {
+        //     $updates[] = new Update($result);
+        // }
+        return $res;
+    }
     public function sendMessage(string $text, string $chatId): bool
     {
         $res = $this->request->get($this->method('sendMessage', [
