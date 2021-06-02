@@ -55,29 +55,42 @@ class Sql
         }
     }
 
-    public function selectFieldsFrom(string $table , array $fields = null , array $where = null) : array
+    public function selectFieldsFrom(string $table, array $fields = null, array $where = null): array
     {
-        $sql = "SELECT ";
-        if($fields == null) $sql .= '*';
-        else{
+        $sql = 'SELECT ';
+        if (null == $fields) {
+            $sql .= '*';
+        } else {
             foreach ($fields as $key => $value) {
                 $sql .= $key;
-                if (array_key_last($fields) != $key) $sql .= ', ';
+                if (array_key_last($fields) != $key) {
+                    $sql .= ', ';
+                }
             }
         }
         $sql .= " FROM {$table}";
-        if($where != null){
-            $sql .= " WHERE ";
-            foreach ($where as $key => $value) {
-                $sql .= "{$key}=";
-                if(is_string($value)) $sql .= "'{$value}'";
-                else $sql .= "{$value}";
-                if (array_key_last($where) != $key) $sql .= ' AND ';
-            }
-        }
+        if (null != $where) $sql = $this->where($sql , $where);
         $query = $this->connection->prepare($sql);
         $query->execute();
         $query->setFetchMode(PDO::FETCH_ASSOC);
+
         return $query->fetchAll();
+    }
+
+    private function where(string $query, array $where): string
+    {
+        $query .= ' WHERE ';
+        foreach ($where as $key => $value) {
+            $query .= "{$key}=";
+            if (is_string($value)) {
+                $query .= "'{$value}'";
+            } else {
+                $query .= "{$value}";
+            }
+            if (array_key_last($where) != $key) {
+                $query .= ' AND ';
+            }
+        }
+        return $query;
     }
 }
