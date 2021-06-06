@@ -1,10 +1,26 @@
 <?php
 namespace TelegramBot\Core\Types;
-use stdClass;
+
+use TelegramBot\Core\Types\Message;
 class Update{
-    public $id;
-    public $object;
-    public function __construct(stdClass $update) {
+    private $id;
+    public function __construct(string $update) {
+        $update = json_decode($update);
         $this->id = $update->update_id;
+        unset($update->update_id);
+        foreach($update as $key=>$value) $this->{$key} = $value;
+    }
+
+    public function getMessage() : ?Message
+    {
+        return (isset($this->message)) ? new Message($this->message) : null;
+    }
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
     }
 }
