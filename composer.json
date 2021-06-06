@@ -8,6 +8,7 @@
             "email": "ehsanghorbani190@gmail.com"
         }
     ],
+    "license": "MIT",
     "require": {},
     "autoload": {
         "psr-4": {
