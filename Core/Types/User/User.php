@@ -1,0 +1,24 @@
+<?php
+
+namespace TelegramBot\Core\Types\User;
+
+use TelegramBot\Core\Types\User\FromType;
+use stdClass;
+
+
+final class User extends FromType
+{
+    private $isBot;
+
+    public function __construct(stdClass $user)
+    {
+        parent::__construct($user);
+        $this->isBot = $user->is_bot;
+    }
+
+    public function isBot(): bool
+    {
+        return $this->isBot;
+    }
+}
+
