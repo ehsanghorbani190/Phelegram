@@ -25,12 +25,12 @@ class Bot
     //main Commands
     public function getMe(): Update
     {
-        return json_decode($this->request->get($this->method("getMe")));
+        return new Update($this->request->get($this->method("getMe")));
     }
 
     public function getUpdateFromWebhook(): Update
     {
-        return json_decode($this->request->get("php://input"));
+        return new Update($this->request->get("php://input"));
     }
 
     public function getUpdates(int $limit = null) : array
@@ -42,13 +42,12 @@ class Bot
         if($limit != null) $options['limit'] = $limit;
         $res = json_decode($this->request->get($this->method("getUpdates", $options)));
         $res = $res->result;
-        $id = end($res)->update_id;
-        $sql->insertInto('Updates' , ['id' => $id]);
-        // $updates = [];
-        // foreach ($res as $result) {
-        //     $updates[] = new Update($result);
-        // }
-        return $res;
+        $updates = [];
+        foreach ($res as $result) {
+            $sql->insertInto('Updates' , ['id' => $result->update_id]);
+            $updates[] = new Update(json_encode($result));
+        }
+        return $updates;
     }
     public function sendMessage(string $text, string $chatId): bool
     {
@@ -64,12 +63,12 @@ class Bot
     {
         $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
         $file = new File($fileData);
-        $file->download();
+        $file->download($fileName);
     }
 
     public function sendPhotoByID(string $fileID, string $chatID, string $caption = ''): Update
     {
-        return json_decode($this->request->get($this->method('sendPhoto', [
+        return new Update($this->request->get($this->method('sendPhoto', [
             'chat_id' => $chatID,
             'photo' => $fileID,
             'caption' => $caption,
