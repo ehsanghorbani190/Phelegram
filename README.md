@@ -26,10 +26,37 @@ Well, I've got some very good reasons :
 
 Installation is as simple as possible.
 <ol>
-<li>Require via Composer:</br>
-<b><code>composer require timerunner2359/telegrambot</code></b><br></li>
-<li>Change needed variables (bot token is required. If you use webhook, DB vars aren't neccesary ) in ``.env.copy`` file.</li>
-<li>Rename ``.env.copy`` file to ``.env``.</li>
-<li>Make Magic Happen in ``index.php`` file 😉</li>
+<li>
+
+Require via Composer:</br>
+
+```bash
+composer require timerunner2359/telegrambot
+```
+</li>
+
+<li>
+
+Change needed variables (bot token is required. If you use webhook, DB vars aren't neccesary ) in ``.env.copy`` file.
+
+</li>  
+<li>
+
+Rename ``.env.copy`` file to ``.env`` .
+
+</li>
+<li>
+
+Make Magic Happen in ``index.php`` file 😉
+
+</li>
 </ol>
 
+## How to use
+
+For now, The
+``Bot`` class method names are self-describing.<br>
+I'll list all methods whenever i could 😅
+
+## License
+This library is under <a href="https://github.com/ehsanghorbani190/TelegramBot/blob/master/LICENSE">MIT license</a>.
