@@ -1,6 +1,11 @@
 <?php
 namespace TelegramBot;
-require("./vendor/autoload.php");
+
 use TelegramBot\Core\Bot;
-//main executable program 
+use TelegramBot\Core\Types\Update;
+
+require("vendor/autoload.php");
+/**
+ * Make Magic Happen
+ */ 
 $bot = new Bot();
