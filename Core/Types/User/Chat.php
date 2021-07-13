@@ -1,7 +1,7 @@
 <?php
-namespace TelegramBot\Core\Types\User;
+namespace Phelegram\Core\Types\User;
 
-use TelegramBot\Core\Types\User\FromType;
+use Phelegram\Core\Types\User\FromType;
 use stdClass;
 
 final class Chat extends FromType

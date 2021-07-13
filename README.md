@@ -1,7 +1,7 @@
-# TelegramBot <img alt="GitHub" src="https://img.shields.io/github/license/ehsanghorbani190/TelegramBot">
+# Phelegram <img alt="GitHub" src="https://img.shields.io/github/license/ehsanghorbani190/TelegramBot">
 
 
-A simple yet feature-rich solution for developing Telegram bots!</br>
+A simple (yet feature-rich) solution for developing Telegram bots!</br>
 this is a mini framework ( or you may call it library ) to make simple or complex telegram bots easily and without getting your hands dirty with Telegram API manualy 😀</br>
 
 <b>Notes</b></br>

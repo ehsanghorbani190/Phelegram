@@ -1,6 +1,6 @@
 <?php
 
-namespace TelegramBot\Utilities;
+namespace Phelegram\Utilities;
 
 use Exception;
 

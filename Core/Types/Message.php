@@ -1,9 +1,9 @@
 <?php
 
-namespace TelegramBot\Core\Types;
+namespace Phelegram\Core\Types;
 
-use TelegramBot\Core\Types\User\Chat;
-use TelegramBot\Core\Types\User\User;
+use Phelegram\Core\Types\User\Chat;
+use Phelegram\Core\Types\User\User;
 use stdClass;
 
 final class Message

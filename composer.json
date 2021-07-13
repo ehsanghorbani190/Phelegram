@@ -1,20 +1,20 @@
 {
-    "name": "timerunner2359/telegrambot",
-    "description": "A feature-rich & simple solution for telegram bots",
+    "name": "timerunner2359/phelegram",
+    "description": "A simple solution for telegram bots",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Ehsan Ghorbani",
             "email": "ehsanghorbani190@gmail.com"
         }
     ],
-    "license": "MIT",
     "require": {
         "php": ">=7.4"
     },
     "autoload": {
         "psr-4": {
-            "TelegramBot\\" : "./"
+            "Phelegram\\" : "./"
         }
     }
 }

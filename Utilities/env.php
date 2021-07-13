@@ -1,5 +1,5 @@
 <?php
-namespace TelegramBot\Utilities;
+namespace Phelegram\Utilities;
 
 final class env
 {

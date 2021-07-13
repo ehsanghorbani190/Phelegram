@@ -1,9 +1,9 @@
 <?php
 
-namespace TelegramBot\Core\Types;
+namespace Phelegram\Core\Types;
 
-use TelegramBot\Utilities\env;
-use TelegramBot\Utilities\Curl;
+use Phelegram\Utilities\env;
+use Phelegram\Utilities\Curl;
 use stdClass;
 
 class File

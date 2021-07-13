@@ -1,5 +1,5 @@
 <?php
-namespace TelegramBot\Core\Types\User;
+namespace Phelegram\Core\Types\User;
 
 use stdClass;
 

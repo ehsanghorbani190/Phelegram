@@ -1,8 +1,8 @@
 <?php
-namespace TelegramBot;
+namespace Phelegram;
 
-use TelegramBot\Core\Bot;
-use TelegramBot\Core\Types\Update;
+use Phelegram\Core\Bot;
+use Phelegram\Core\Types\Update;
 
 require("vendor/autoload.php");
 /**

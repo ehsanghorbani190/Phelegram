@@ -1,7 +1,7 @@
 <?php
-namespace TelegramBot\Core\Types;
+namespace Phelegram\Core\Types;
 
-use TelegramBot\Core\Types\Message;
+use Phelegram\Core\Types\Message;
 class Update{
     private $id;
     public function __construct(string $update) {

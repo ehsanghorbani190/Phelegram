@@ -1,12 +1,12 @@
 <?php
 
-namespace TelegramBot\Core;
+namespace Phelegram\Core;
 
-use TelegramBot\Core\Types\File;
-use TelegramBot\Core\Types\Update;
-use TelegramBot\Utilities\env;
-use TelegramBot\Utilities\Curl;
-use TelegramBot\Utilities\Sql;
+use Phelegram\Core\Types\File;
+use Phelegram\Core\Types\Update;
+use Phelegram\Utilities\env;
+use Phelegram\Utilities\Curl;
+use Phelegram\Utilities\Sql;
 //Bot class
 class Bot
 {
