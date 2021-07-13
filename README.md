@@ -31,20 +31,15 @@ Installation is as simple as possible.
 Require via Composer:</br>
 
 ```bash
-composer require timerunner2359/telegrambot
+composer require timerunner2359/phelegram
 ```
 </li>
 
 <li>
 
-Change needed variables (bot token is required. If you use webhook, DB vars aren't neccesary ) in ``.env.copy`` file.
+Change needed variables (bot token is required. If you use webhook, DB vars aren't neccesary ) in ``.env`` file.
 
 </li>  
-<li>
-
-Rename ``.env.copy`` file to ``.env`` .
-
-</li>
 <li>
 
 Make Magic Happen in ``index.php`` file 😉
