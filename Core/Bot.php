@@ -92,11 +92,6 @@ class Bot
         return ($this->debugID != "null") ? $this->sendMessage('***DEBUG LOG***'.chr(10).$text, $this->debugID) : false;
     }
 
-    public function setDebugID(string $debugID)
-    {
-        $this->debugID = $debugID;
-    }
-
     //make methods easy to use
     private function method(string $method, array $params = null): string
     {
