@@ -17,11 +17,11 @@ class Bot
     private $token;
     private $debugID;
     private $request;
+    const API = 'https://api.telegram.org/bot';
 
     public function __construct()
     {
         $this->token = env::var('TOKEN');
-        define('API', 'https://api.telegram.org/bot'.$this->token.'/');
         $this->debugID = env::var('DEBUG');
         $this->request = new Curl();
     }
@@ -100,7 +100,7 @@ class Bot
     //make methods easy to use
     private function method(string $method, array $params = null): string
     {
-        $res = API.$method;
+        $res = self::API.$this->token.'/'.$method;
         if (!empty($params)) {
             $res .= '?';
             foreach ($params as $param => $value) {
