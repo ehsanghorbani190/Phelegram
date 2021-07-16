@@ -1,7 +1,6 @@
 <?php
 namespace Phelegram\Core\Types\User;
 
-use Phelegram\Core\Types\User\FromType;
 use stdClass;
 
 final class Chat extends FromType

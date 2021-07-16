@@ -2,11 +2,15 @@
 
 namespace Phelegram\Core;
 
-use Phelegram\Core\Types\File;
-use Phelegram\Core\Types\Update;
-use Phelegram\Utilities\env;
-use Phelegram\Utilities\Curl;
-use Phelegram\Utilities\Sql;
+use Phelegram\Core\Types\{
+    File,
+    Update
+};
+use Phelegram\Utilities\{
+    env,
+    Sql,
+    Curl
+};
 //Bot class
 class Bot
 {

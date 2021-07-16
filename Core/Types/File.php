@@ -2,8 +2,10 @@
 
 namespace Phelegram\Core\Types;
 
-use Phelegram\Utilities\env;
-use Phelegram\Utilities\Curl;
+use Phelegram\Utilities\{
+    env,
+    Curl
+};
 use stdClass;
 
 class File

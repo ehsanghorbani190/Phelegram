@@ -2,7 +2,6 @@
 
 namespace Phelegram\Core\Types\User;
 
-use Phelegram\Core\Types\User\FromType;
 use stdClass;
 
 

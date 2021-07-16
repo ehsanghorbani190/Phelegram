@@ -2,8 +2,10 @@
 
 namespace Phelegram\Core\Types;
 
-use Phelegram\Core\Types\User\Chat;
-use Phelegram\Core\Types\User\User;
+use Phelegram\Core\Types\User\{
+    Chat,
+    User
+};
 use stdClass;
 
 final class Message
