@@ -35,7 +35,9 @@ class Bot
     {
         return new Update($this->request->get("php://input"));
     }
-
+    /**
+     * @return Update[]
+     */
     public function getUpdates(int $limit = null) : array
     {
         $res = json_decode($this->request->get($this->method("getUpdates",["limit" => $limit ?? 100])));
