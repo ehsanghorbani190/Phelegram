@@ -91,7 +91,7 @@ class Bot
 
     public function debug(string $text): bool
     {
-        return ($this->debugID != "null") ? $this->sendMessage('***DEBUG LOG***'.chr(10).$text, $this->debugID) : false;
+        return ($this->debugID != "null") ? $this->sendMessage(urlencode("***DEBUG LOG*** \n".$text), $this->debugID) : false;
     }
 
     //make methods easy to use
