@@ -32,7 +32,7 @@ class Bot
         return new Update($this->request->get($this->method("getMe")));
     }
 
-    public function getUpdateFromWebhook(): Update
+    public function getUpdate(): Update
     {
         return new Update($this->request->get("php://input"));
     }
