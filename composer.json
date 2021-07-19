@@ -2,7 +2,7 @@
     "name": "timerunner2359/phelegram",
     "description": "A simple solution for telegram bots",
     "type": "library",
-    "license": "MIT",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
             "name": "Ehsan Ghorbani",
