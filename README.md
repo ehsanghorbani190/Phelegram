@@ -1,4 +1,4 @@
-# Phelegram <img alt="GitHub" src="https://img.shields.io/github/license/ehsanghorbani190/TelegramBot">
+# Phelegram <img alt="GitHub" src="https://img.shields.io/github/license/ehsanghorbani190/Phelegram?style=for-the-badge">
 
 
 A simple (yet feature-rich) solution for developing Telegram bots!</br>
@@ -31,13 +31,13 @@ Installation is as simple as possible.
 Require via Composer:</br>
 
 ```bash
-composer require timerunner2359/phelegram
+composer create-project timerunner2359/phelegram
 ```
 </li>
 
 <li>
 
-Change needed variables (bot token is required. If you use webhook, DB vars aren't neccesary ) in ``.env`` file.
+Change needed variables (bot token is required. DB vars aren't neccesary) in ``.env`` file.
 
 </li>  
 <li>
@@ -54,4 +54,4 @@ For now, The
 I'll list all methods whenever i could 😅
 
 ## License
-This library is under <a href="https://github.com/ehsanghorbani190/TelegramBot/blob/master/LICENSE">MIT license</a>.
+This library is under <a href="https://github.com/ehsanghorbani190/Phelegram/blob/master/COPYING">GNU GPL 3.0 license</a>.
