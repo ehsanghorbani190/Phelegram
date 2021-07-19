@@ -62,7 +62,13 @@ class Bot
 
         return (false != $res) ? true : false;
     }
-
+    public function deleteMessage(string $chatID, string $messageID)
+    {
+        return $this->request->get($this->method("deleteMessage" ,[
+            'chat_id' => $chatID,
+            'message_id' => $messageID
+        ]));
+    }
     public function getFile(string $fileID, string $fileName)
     {
         $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
