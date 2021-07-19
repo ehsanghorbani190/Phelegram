@@ -8,7 +8,6 @@ use Phelegram\Core\Types\{
 };
 use Phelegram\Utilities\{
     env,
-    Sql,
     Curl
 };
 //Bot class
