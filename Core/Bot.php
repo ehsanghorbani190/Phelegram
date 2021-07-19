@@ -39,18 +39,13 @@ class Bot
 
     public function getUpdates(int $limit = null) : array
     {
-        $sql = new Sql();
-        $last = end($sql->selectFieldsFrom("Updates"))['id'];
-        $options = [];
-        if($last != null) $options["offset"] =  $last + 1;
-        if($limit != null) $options['limit'] = $limit;
-        $res = json_decode($this->request->get($this->method("getUpdates", $options)));
+        $res = json_decode($this->request->get($this->method("getUpdates",["limit" => $limit ?? 100])));
         $res = $res->result;
         $updates = [];
         foreach ($res as $result) {
-            $sql->insertInto('Updates' , ['id' => $result->update_id]);
             $updates[] = new Update(json_encode($result));
         }
+        $this->request->get($this->method("getUpdates" , ["offset" => end($res)->update_id + 1]));
         return $updates;
     }
     public function sendMessage(string $text, string $chatId): bool
