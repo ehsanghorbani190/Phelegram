@@ -27,4 +27,12 @@ class Update
     {
         return $this->id;
     }
+    public function getSenderID() :string
+    {
+        return $this->message->getFrom()->getID();
+    }
+    public function getChatID() : string
+    {
+        return $this->message->getChat()->getID();
+    }
 }
