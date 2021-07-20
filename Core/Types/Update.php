@@ -2,24 +2,28 @@
 namespace Phelegram\Core\Types;
 
 use Phelegram\Core\Types\Message;
-class Update{
+
+class Update
+{
     private $id;
-    public function __construct(string $update) {
+    private Message $message;
+    public function __construct(string $update)
+    {
         $update = json_decode($update);
         $this->id = $update->update_id;
-        unset($update->update_id);
-        foreach($update as $key=>$value) $this->{$key} = $value;
+        $message = $update->message ?? $update->edited_message ?? $update->channel_post ?? $update->edited_channel_post;
+        $this->message =($message != null) ? new Message($message): null;
     }
 
     public function getMessage() : ?Message
     {
-        return (isset($this->message)) ? new Message($this->message) : null;
+        return $this->message;
     }
 
     /**
      * Get the value of id
-     */ 
-    public function getId()
+     */
+    public function getId() :string
     {
         return $this->id;
     }
