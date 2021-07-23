@@ -3,6 +3,7 @@
 namespace Phelegram\Utilities;
 
 use Exception;
+use InvalidArgumentException;
 
 final class Curl
 {
@@ -48,7 +49,7 @@ final class Curl
         }
     }
 
-    public function downloadFromTo(string $url, string $name, array $options = null): ?string
+    public function downloadFromTo(string $url, string $name, array $options = null): bool
     {
         try {
             curl_setopt($this->handle, CURLOPT_URL, $url);
@@ -63,11 +64,13 @@ final class Curl
                 curl_setopt_array($this->handle, $options);
             }
             $result = curl_exec($this->handle);
+            $status =  curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
             curl_reset($this->handle);
-
-            return ($result != false) ? $result : null;
+            if($status == 200) return true;
+            else throw new InvalidArgumentException("Error while downloading file");
         } catch (Exception $e) {
-            return $e->getMessage();
+            echo $e->getMessage() . $e->getTraceAsString();
+            return false;
         }
     }
 }
