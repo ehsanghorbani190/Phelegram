@@ -4,7 +4,8 @@ namespace Phelegram\Core;
 
 use Phelegram\Core\Types\{
     File,
-    Update
+    Update,
+    User\User
 };
 use Phelegram\Utilities\{
     env,
@@ -26,9 +27,9 @@ class Bot
     }
 
     //main Commands
-    public function getMe(): Update
+    public function getMe(): User
     {
-        return new Update($this->request->get($this->method("getMe")));
+        return new User(json_decode($this->request->get($this->method("getMe"))));
     }
 
     public function getUpdate(): Update
@@ -56,12 +57,12 @@ class Bot
 
         return (false != $res) ? true : false;
     }
-    public function deleteMessage(string $chatID, string $messageID)
+    public function deleteMessage(string $chatID, string $messageID): bool
     {
-        return $this->request->get($this->method("deleteMessage" ,[
+        return json_decode($this->request->get($this->method("deleteMessage" ,[
             'chat_id' => $chatID,
             'message_id' => $messageID
-        ]));
+        ])))->ok;
     }
     public function getFile(string $fileID, string $fileName)
     {
