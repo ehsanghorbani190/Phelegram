@@ -63,12 +63,12 @@ class Bot
             'message_id' => $messageID
         ]));
     }
-    // public function getFile(string $fileID, string $fileName)
-    // {
-    //     $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
-    //     $file = new File($fileData);
-    //     $file->download($fileName);
-    // }
+    public function getFile(string $fileID, string $fileName)
+    {
+        $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
+        $file = new File($fileData->result);
+        $file->download($fileName);
+    }
 
     // public function sendPhotoByID(string $fileID, string $chatID, string $caption = ''): Update
     // {
