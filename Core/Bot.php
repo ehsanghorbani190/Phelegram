@@ -2,6 +2,7 @@
 
 namespace Phelegram\Core;
 
+use Generator;
 use Phelegram\Core\Types\{
     File,
     Update
@@ -38,16 +39,14 @@ class Bot
     /**
      * @return Update[]
      */
-    public function getUpdates(int $limit = null) : array
+    public function getUpdates(int $limit = 100)
     {
-        $res = json_decode($this->request->get($this->method("getUpdates",["limit" => $limit ?? 100])));
+        $res = json_decode($this->request->get($this->method("getUpdates",["limit" => $limit])));
         $res = $res->result;
-        $updates = [];
-        foreach ($res as $result) {
-            $updates[] = new Update(json_encode($result));
-        }
         $this->request->get($this->method("getUpdates" , ["offset" => end($res)->update_id + 1]));
-        return $updates;
+        foreach ($res as $result) {
+            yield new Update(json_encode($result));
+        }
     }
     public function sendMessage(string $text, string $chatId): bool
     {
