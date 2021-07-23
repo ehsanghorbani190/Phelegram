@@ -46,12 +46,11 @@ class File
     /**
      * @param fileName fileName to save file into. saves file into id if not passed
      */
-    public function download(string $fileName = null) : string
+    public function download(string $mime, string $fileName = null) : bool
     {
-        $name = $fileName ?? $this->getID();
+        $name = ($fileName ?? $this->getID()) . $mime;
         $path = 'https://api.telegram.org/file/bot'.env::var('TOKEN').'/'.$this->getPath();
         $handle = new Curl();
-        $res = $handle->downloadFromTo($path,$name);
-        return ($res != null) ? $res : "Error while downloading" ; 
+        return $handle->downloadFromTo($path,$name);
     }
 }
