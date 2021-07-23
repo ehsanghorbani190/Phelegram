@@ -64,11 +64,10 @@ class Bot
             'message_id' => $messageID
         ])))->ok;
     }
-    public function getFile(string $fileID, string $fileName)
+    public function getFile(string $fileID) : File
     {
         $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
-        $file = new File($fileData->result);
-        $file->download($fileName);
+        return new File($fileData->result);
     }
 
     // public function sendPhotoByID(string $fileID, string $chatID, string $caption = ''): Update
