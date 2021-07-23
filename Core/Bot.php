@@ -2,7 +2,6 @@
 
 namespace Phelegram\Core;
 
-use Generator;
 use Phelegram\Core\Types\{
     File,
     Update
@@ -64,21 +63,21 @@ class Bot
             'message_id' => $messageID
         ]));
     }
-    public function getFile(string $fileID, string $fileName)
-    {
-        $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
-        $file = new File($fileData);
-        $file->download($fileName);
-    }
+    // public function getFile(string $fileID, string $fileName)
+    // {
+    //     $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
+    //     $file = new File($fileData);
+    //     $file->download($fileName);
+    // }
 
-    public function sendPhotoByID(string $fileID, string $chatID, string $caption = ''): Update
-    {
-        return new Update($this->request->get($this->method('sendPhoto', [
-            'chat_id' => $chatID,
-            'photo' => $fileID,
-            'caption' => $caption,
-        ])));
-    }
+    // public function sendPhotoByID(string $fileID, string $chatID, string $caption = ''): Update
+    // {
+    //     return new Update($this->request->get($this->method('sendPhoto', [
+    //         'chat_id' => $chatID,
+    //         'photo' => $fileID,
+    //         'caption' => $caption,
+    //     ])));
+    // }
 
     //testing functions
     public static function storeInJson(Update $update): bool
@@ -94,7 +93,7 @@ class Bot
     }
 
     //make methods easy to use
-    private function method(string $method, array $params = null): string
+    protected function method(string $method, array $params = null): string
     {
         $res = self::API.$this->token.'/'.$method;
         if (!empty($params)) {
