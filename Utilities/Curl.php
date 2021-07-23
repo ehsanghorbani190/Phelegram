@@ -52,7 +52,7 @@ final class Curl
     {
         try {
             curl_setopt($this->handle, CURLOPT_URL, $url);
-            curl_setopt($this->hanlde, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, 1);
             $file = fopen(dirname(__DIR__).'/Storage/'.$name, 'w+');
             if (!$file) {
                 throw new Exception('Cant open new file: ' . $name );
