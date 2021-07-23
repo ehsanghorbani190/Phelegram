@@ -48,7 +48,7 @@ class File
      */
     public function download(string $fileName = null) : string
     {
-        $name = (null !== $fileName) ? $fileName : $this->getID();
+        $name = $fileName ?? $this->getID();
         $path = 'https://api.telegram.org/file/bot'.env::var('TOKEN').'/'.$this->getPath();
         $handle = new Curl();
         $res = $handle->downloadFromTo($path,$name);
