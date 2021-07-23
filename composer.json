@@ -22,7 +22,8 @@
             "php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
         "post-install-cmd": [
-            "composer dump-autoload"
+            "composer dump-autoload",
+            "mkdir Storage"
         ],
         "post-update-cmd": [
             "composer dump-autoload"
