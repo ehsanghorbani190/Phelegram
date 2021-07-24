@@ -1,4 +1,5 @@
 <?php
+
 namespace Phelegram\Utilities;
 
 final class env
@@ -12,8 +13,9 @@ final class env
         while (!feof($envFile)) {
             $line = fgets($envFile);
             if (false !== strstr($line, '$'.ucwords(trim($varName)))) {
-                $var =  explode('=', $line)[1];
-                return str_replace("\n" , '' , $var);
+                $var = explode('=', $line)[1];
+
+                return str_replace("\n", '', $var);
             }
         }
 
