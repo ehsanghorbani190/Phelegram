@@ -90,7 +90,7 @@ class Bot
         if (!empty($params)) {
             $res .= '?';
             foreach ($params as $param => $value) {
-                $res .= trim($param).'='.trim($value);
+                $res .= trim($param).'='.((is_string($value)) ? trim($value) : json_encode($value));
                 if (array_key_last($params) != $param) {
                     $res .= '&';
                 }
