@@ -3,6 +3,7 @@
 namespace Phelegram\Core;
 
 use Phelegram\Core\Types\File;
+use Phelegram\Core\Types\Keyboards\ReplyKeyboard;
 use Phelegram\Core\Types\Update;
 use Phelegram\Core\Types\User\User;
 use Phelegram\Utilities\Curl;
@@ -47,12 +48,16 @@ class Bot
         }
     }
 
-    public function sendMessage(string $text, string $chatId): bool
+    public function sendMessage(string $text, string $chatId, ReplyKeyboard $keyboard = null): bool
     {
-        $res = $this->request->get($this->method('sendMessage', [
+        $options = [
             'chat_id' => $chatId,
             'text' => $text,
-        ]));
+        ];
+        if (null != $keyboard) {
+            $options['reply_markup'] = $keyboard;
+        }
+        $res = $this->request->get($this->method('sendMessage', $options));
 
         return json_decode($res)->ok;
     }
