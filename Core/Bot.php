@@ -55,7 +55,7 @@ class Bot
             'text' => $text,
         ]));
 
-        return (false != $res) ? true : false;
+        return json_decode($res)->ok;
     }
     public function deleteMessage(string $chatID, string $messageID): bool
     {
@@ -69,15 +69,6 @@ class Bot
         $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
         return new File($fileData->result);
     }
-
-    // public function sendPhotoByID(string $fileID, string $chatID, string $caption = ''): Update
-    // {
-    //     return new Update($this->request->get($this->method('sendPhoto', [
-    //         'chat_id' => $chatID,
-    //         'photo' => $fileID,
-    //         'caption' => $caption,
-    //     ])));
-    // }
 
     //testing functions
     public static function storeInJson(Update $update): bool
