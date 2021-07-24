@@ -1,4 +1,5 @@
 <?php
+
 namespace Phelegram\Core\Types\User;
 
 use stdClass;

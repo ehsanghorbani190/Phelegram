@@ -56,7 +56,7 @@ final class Curl
             curl_setopt($this->handle, CURLOPT_RETURNTRANSFER, 1);
             $file = fopen(dirname(__DIR__).'/Storage/'.$name, 'w+');
             if (!$file) {
-                throw new Exception('Cant open new file: ' . $name );
+                throw new Exception('Cant open new file: '.$name);
             }
             curl_setopt($this->handle, CURLOPT_FILE, $file);
             curl_setopt($this->handle, CURLOPT_TIMEOUT, 15);
@@ -64,12 +64,16 @@ final class Curl
                 curl_setopt_array($this->handle, $options);
             }
             $result = curl_exec($this->handle);
-            $status =  curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
+            $status = curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
             curl_reset($this->handle);
-            if($status == 200) return true;
-            else throw new InvalidArgumentException("Error while downloading file");
+            if (200 == $status) {
+                return true;
+            }
+
+            throw new InvalidArgumentException('Error while downloading file');
         } catch (Exception $e) {
-            echo $e->getMessage() . $e->getTraceAsString();
+            echo $e->getMessage().$e->getTraceAsString();
+
             return false;
         }
     }

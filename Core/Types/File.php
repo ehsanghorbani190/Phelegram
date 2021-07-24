@@ -2,10 +2,8 @@
 
 namespace Phelegram\Core\Types;
 
-use Phelegram\Utilities\{
-    env,
-    Curl
-};
+use Phelegram\Utilities\Curl;
+use Phelegram\Utilities\env;
 use stdClass;
 
 class File
@@ -46,11 +44,12 @@ class File
     /**
      * @param fileName fileName to save file into. saves file into id if not passed
      */
-    public function download(string $mime, string $fileName = null) : bool
+    public function download(string $mime, string $fileName = null): bool
     {
-        $name = ($fileName ?? $this->getID()) . $mime;
+        $name = ($fileName ?? $this->getID()).$mime;
         $path = 'https://api.telegram.org/file/bot'.env::var('TOKEN').'/'.$this->getPath();
         $handle = new Curl();
-        return $handle->downloadFromTo($path,$name);
+
+        return $handle->downloadFromTo($path, $name);
     }
 }

@@ -4,7 +4,6 @@ namespace Phelegram\Core\Types\User;
 
 use stdClass;
 
-
 final class User extends FromType
 {
     private $isBot;
@@ -20,4 +19,3 @@ final class User extends FromType
         return $this->isBot;
     }
 }
-

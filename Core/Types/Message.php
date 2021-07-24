@@ -2,10 +2,8 @@
 
 namespace Phelegram\Core\Types;
 
-use Phelegram\Core\Types\User\{
-    Chat,
-    User
-};
+use Phelegram\Core\Types\User\Chat;
+use Phelegram\Core\Types\User\User;
 use stdClass;
 
 final class Message
@@ -59,17 +57,19 @@ final class Message
     {
         return $this->id;
     }
+
     /**
-     * Get text for text messages
+     * Get text for text messages.
      */
-    public function getText() : ?string
+    public function getText(): ?string
     {
         return (isset($this->text)) ? $this->text : null;
     }
+
     /**
-     * Get caption for multimedia messages
+     * Get caption for multimedia messages.
      */
-    public function getCaption() : ?string
+    public function getCaption(): ?string
     {
         return (isset($this->caption)) ? $this->caption : null;
     }
