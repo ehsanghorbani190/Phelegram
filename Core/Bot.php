@@ -32,7 +32,7 @@ class Bot
 
     public function getUpdate(): Update
     {
-        return new Update($this->request->get('php://input'));
+        return new Update(file_get_contents('php://input'));
     }
 
     /**
