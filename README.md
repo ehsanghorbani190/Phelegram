@@ -1,16 +1,24 @@
-# Phelegram <img alt="GitHub" src="https://img.shields.io/github/license/ehsanghorbani190/Phelegram?style=for-the-badge">
 
+<div align="center">
+<img alt="Logo" src="Logo.png" >
+
+# Phelegram
+
+<img alt="License" src="https://img.shields.io/github/license/ehsanghorbani190/Phelegram?style=for-the-badge">
+<img alt="Code Size" src="https://img.shields.io/github/languages/code-size/ehsanghorbani190/Phelegram?style=for-the-badge">
+<img alt="Downloads" src="https://img.shields.io/packagist/dt/timerunner2359/phelegram?style=for-the-badge">
+</div>
 
 A simple (yet feature-rich) solution for developing Telegram bots!</br>
 this is a mini framework ( or you may call it library ) to make simple or complex telegram bots easily and without getting your hands dirty with Telegram API manualy 😀</br>
 
-<b>Notes</b></br>
+### Notes</br>
 
 First of all, I'm not a very good developer, you may call me baby developer 😅 </br>
 I wanted to develop my skill's while writing this project, so, everything is PURE PHP, no ready-to-use library where used. And I don't know how much good I wrote everything but I did my best.</br>
 So feel free to find bugs. And it'll be an honor to get suggestions from you guys to make this project better 😉</br>
 
-## Why another Telegram Bot library in php?
+## Why another library for Telegram bots in php?
 
 Well, I've got some very good reasons :
 <ol>
@@ -37,7 +45,7 @@ composer create-project timerunner2359/phelegram
 
 <li>
 
-Change needed variables (bot token is required. DB vars aren't neccesary) in ``.env`` file.
+Replace default values  in ``.env`` with your bot token and your chatID( as debug ).
 
 </li>  
 <li>
