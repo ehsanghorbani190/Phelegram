@@ -2,13 +2,15 @@
 
 namespace Phelegram\Core\Types\Keyboards;
 
-class ReplyKeyboard
+use JsonSerializable;
+
+class ReplyKeyboard implements JsonSerializable
 {
-    public $keyboard = [];
-    public $resize_keyboard = false;
-    public $one_time_keyboard = false;
-    public $selective = false;
-    public $input_field_placeholder;
+    private $keyboard = [];
+    private $resize_keyboard = false;
+    private $one_time_keyboard = false;
+    private $selective = false;
+    private $input_field_placeholder;
 
     /**
      * A Keyboard that replies data and makes user interaction easier.
@@ -60,7 +62,7 @@ class ReplyKeyboard
      */
     public function addButton(string $text, int $row = 0): self
     {
-        $this->keyboard[$row][] = new ReplyKeyboardButton($text);
+        $this->keyboard[$row][] = ['text' => $text, 'request_contact' => false, 'request_location' => false];
 
         return $this;
     }
@@ -73,8 +75,7 @@ class ReplyKeyboard
      */
     public function addContactButton(string $text, int $row = 0): self
     {
-        $button = new ReplyKeyboardButton($text);
-        $this->keyboard[$row][] = $button->requestContact();
+        $this->keyboard[$row][] = ['text' => $text, 'request_contact' => true, 'request_location' => false];
 
         return $this;
     }
@@ -87,9 +88,13 @@ class ReplyKeyboard
      */
     public function addLocationButton(string $text, int $row = 0): self
     {
-        $button = new ReplyKeyboardButton($text);
-        $this->keyboard[$row][] = $button->requestLocation();
+        $this->keyboard[$row][] = ['text' => $text, 'request_contact' => false, 'request_location' => true];
 
         return $this;
+    }
+
+    public function jsonSerialize()
+    {
+        return get_object_vars($this);
     }
 }
