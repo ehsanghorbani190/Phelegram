@@ -7,7 +7,7 @@ use Phelegram\Core\Types\Keyboards\ReplyKeyboard;
 use Phelegram\Core\Types\Update;
 use Phelegram\Core\Types\User\User;
 use Phelegram\Utilities\Curl;
-use Phelegram\Utilities\env;
+use Phelegram\Utilities\Env;
 
 //Bot class
 class Bot
@@ -19,8 +19,8 @@ class Bot
 
     public function __construct()
     {
-        $this->token = env::var('TOKEN');
-        $this->debugID = env::var('DEBUG');
+        $this->token = Env::var('TOKEN');
+        $this->debugID = Env::var('DEBUG');
         $this->request = new Curl();
     }
 

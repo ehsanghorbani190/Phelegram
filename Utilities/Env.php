@@ -2,7 +2,7 @@
 
 namespace Phelegram\Utilities;
 
-final class env
+final class Env
 {
     public static function var(string $varName): string
     {

@@ -3,7 +3,7 @@
 namespace Phelegram\Core\Types;
 
 use Phelegram\Utilities\Curl;
-use Phelegram\Utilities\env;
+use Phelegram\Utilities\Env;
 use stdClass;
 
 class File
@@ -47,7 +47,7 @@ class File
     public function download(string $mime, string $fileName = null): bool
     {
         $name = ($fileName ?? $this->getID()).$mime;
-        $path = 'https://api.telegram.org/file/bot'.env::var('TOKEN').'/'.$this->getPath();
+        $path = 'https://api.telegram.org/file/bot'.Env::var('TOKEN').'/'.$this->getPath();
         $handle = new Curl();
 
         return $handle->downloadFromTo($path, $name);
