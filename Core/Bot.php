@@ -12,14 +12,11 @@ use Phelegram\Utilities\Env;
 //Bot class
 class Bot
 {
-    public const API = 'https://api.telegram.org/bot';
-    private $token;
     private $debugID;
     private $request;
 
     public function __construct()
     {
-        $this->token = Env::var('TOKEN');
         $this->debugID = Env::var('DEBUG');
         $this->request = new Curl();
     }
@@ -27,7 +24,7 @@ class Bot
     //main Commands
     public function getMe(): User
     {
-        return new User(json_decode($this->request->get($this->method('getMe'))));
+        return new User(json_decode($this->request->getMethod('getMe')));
     }
 
     public function getUpdate(): Update
@@ -40,9 +37,9 @@ class Bot
      */
     public function getUpdates(int $limit = 100)
     {
-        $res = json_decode($this->request->get($this->method('getUpdates', ['limit' => $limit])));
+        $res = json_decode($this->request->getMethod('getUpdates', ['limit' => $limit]));
         $res = $res->result;
-        $this->request->get($this->method('getUpdates', ['offset' => end($res)->update_id + 1]));
+        $this->request->getMethod('getUpdates', ['offset' => end($res)->update_id + 1]);
         foreach ($res as $result) {
             yield new Update(json_encode($result));
         }
@@ -57,22 +54,22 @@ class Bot
         if (null != $keyboard) {
             $options['reply_markup'] = $keyboard;
         }
-        $res = $this->request->get($this->method('sendMessage', $options));
+        $res = $this->request->getMethod('sendMessage', $options);
 
         return json_decode($res)->ok;
     }
 
     public function deleteMessage(string $chatID, string $messageID): bool
     {
-        return json_decode($this->request->get($this->method('deleteMessage', [
+        return json_decode($this->request->getMethod('deleteMessage', [
             'chat_id' => $chatID,
             'message_id' => $messageID,
-        ])))->ok;
+        ]))->ok;
     }
 
     public function getFile(string $fileID): File
     {
-        $fileData = json_decode($this->request->get($this->method('getFile', ['file_id' => $fileID])));
+        $fileData = json_decode($this->request->getMethod('getFile', ['file_id' => $fileID]));
 
         return new File($fileData->result);
     }
@@ -90,20 +87,4 @@ class Bot
         return ('null' != $this->debugID) ? $this->sendMessage(urlencode("***DEBUG LOG*** \n".$text), $this->debugID) : false;
     }
 
-    //make methods easy to use
-    protected function method(string $method, array $params = null): string
-    {
-        $res = self::API.$this->token.'/'.$method;
-        if (!empty($params)) {
-            $res .= '?';
-            foreach ($params as $param => $value) {
-                $res .= trim($param).'='.((is_string($value)) ? trim($value) : json_encode($value));
-                if (array_key_last($params) != $param) {
-                    $res .= '&';
-                }
-            }
-        }
-
-        return $res;
-    }
 }

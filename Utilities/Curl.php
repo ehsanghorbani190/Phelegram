@@ -8,10 +8,12 @@ use InvalidArgumentException;
 final class Curl
 {
     private $handle;
-
+    private $token;
+    public const API = 'https://api.telegram.org/bot';
     public function __construct()
     {
         $this->handle = curl_init();
+        $this->token = Env::var('TOKEN');
     }
 
     public function get(string $url, array $options = null): string
@@ -63,7 +65,6 @@ final class Curl
             if (!empty($options)) {
                 curl_setopt_array($this->handle, $options);
             }
-            $result = curl_exec($this->handle);
             $status = curl_getinfo($this->handle, CURLINFO_HTTP_CODE);
             curl_reset($this->handle);
             if (200 == $status) {
@@ -76,5 +77,27 @@ final class Curl
 
             return false;
         }
+    }
+
+    //make methods easy to use
+    private function methodURL(string $method, array $params = null): string
+    {
+        $res = self::API.$this->token.'/'.$method;
+        if (!empty($params)) {
+            $res .= '?';
+            foreach ($params as $param => $value) {
+                $res .= trim($param).'='.((is_string($value)) ? trim($value) : json_encode($value));
+                if (array_key_last($params) != $param) {
+                    $res .= '&';
+                }
+            }
+        }
+
+        return $res;
+    }
+
+    public function getMethod(string $method, array $params = null, array $options = null) : string
+    {
+        return $this->get($this->methodURL($method,$params) , $options);
     }
 }
