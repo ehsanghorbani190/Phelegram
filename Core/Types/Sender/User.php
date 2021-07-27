@@ -4,7 +4,7 @@ namespace Phelegram\Core\Types\Sender;
 
 use stdClass;
 
-final class User extends FromType
+final class User extends Credentials
 {
     private $isBot;
 

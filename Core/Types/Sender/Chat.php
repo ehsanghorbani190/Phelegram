@@ -4,7 +4,7 @@ namespace Phelegram\Core\Types\Sender;
 
 use stdClass;
 
-final class Chat extends FromType
+final class Chat extends Credentials
 {
     private $type;
     private $title;

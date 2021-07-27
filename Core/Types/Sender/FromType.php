@@ -4,7 +4,7 @@ namespace Phelegram\Core\Types\Sender;
 
 use stdClass;
 
-abstract class FromType
+abstract class Credentials
 {
     private $id;
     private $fName;
