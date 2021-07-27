@@ -1,6 +1,6 @@
 <?php
 
-namespace Phelegram\Core\Types\User;
+namespace Phelegram\Core\Types\Sender;
 
 use stdClass;
 

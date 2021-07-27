@@ -5,7 +5,7 @@ namespace Phelegram\Core;
 use Phelegram\Core\Types\File;
 use Phelegram\Core\Types\Keyboards\ReplyKeyboard;
 use Phelegram\Core\Types\Update;
-use Phelegram\Core\Types\User\User;
+use Phelegram\Core\Types\Sender\User;
 use Phelegram\Utilities\Curl;
 use Phelegram\Utilities\Env;
 
