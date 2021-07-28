@@ -2,9 +2,8 @@
 
 namespace Phelegram\Core\Types\Keyboards;
 
-use JsonSerializable;
 
-class ReplyKeyboard implements JsonSerializable
+class ReplyKeyboard implements Keyboard
 {
     private $keyboard = [];
     private $resize_keyboard = false;

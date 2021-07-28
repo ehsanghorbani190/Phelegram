@@ -3,9 +3,9 @@
 namespace Phelegram\Core;
 
 use Phelegram\Core\Types\File;
-use Phelegram\Core\Types\Keyboards\ReplyKeyboard;
-use Phelegram\Core\Types\Update;
+use Phelegram\Core\Types\Keyboards\Keyboard;
 use Phelegram\Core\Types\Sender\User;
+use Phelegram\Core\Types\Update;
 use Phelegram\Utilities\Curl;
 use Phelegram\Utilities\Env;
 
@@ -45,7 +45,7 @@ class Bot
         }
     }
 
-    public function sendMessage(string $text, string $chatId, ReplyKeyboard $keyboard = null): bool
+    public function sendMessage(string $text, string $chatId, Keyboard $keyboard = null): bool
     {
         $options = [
             'chat_id' => $chatId,
@@ -86,5 +86,4 @@ class Bot
     {
         return ('null' != $this->debugID) ? $this->sendMessage(urlencode("***DEBUG LOG*** \n".$text), $this->debugID) : false;
     }
-
 }
