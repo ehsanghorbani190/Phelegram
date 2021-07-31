@@ -33,13 +33,13 @@ abstract class Credentials
         return $this->fName;
     }
 
-    public function getLName(): string
+    public function getLName(): ?string
     {
-        return $this->lName;
+        return $this->lName ?? null;
     }
 
-    public function getUserName(): string
+    public function getUserName(): ?string
     {
-        return $this->userName;
+        return $this->userName ?? null;
     }
 }

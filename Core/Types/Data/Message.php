@@ -63,7 +63,7 @@ final class Message
      */
     public function getText(): ?string
     {
-        return (isset($this->text)) ? $this->text : null;
+        return $this->text ?? null;
     }
 
     /**
@@ -71,6 +71,6 @@ final class Message
      */
     public function getCaption(): ?string
     {
-        return (isset($this->caption)) ? $this->caption : null;
+        return $this->caption ?? null;
     }
 }
