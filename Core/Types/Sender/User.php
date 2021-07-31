@@ -6,7 +6,7 @@ use stdClass;
 
 final class User extends Credentials
 {
-    private $isBot;
+    private bool $isBot;
 
     public function __construct(stdClass $user)
     {

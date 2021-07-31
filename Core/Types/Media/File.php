@@ -8,10 +8,10 @@ use stdClass;
 
 class File
 {
-    private $id;
-    private $secret;
-    private $size;
-    private $path;
+    private string $id;
+    private string $secret;
+    private string $size;
+    private string $path;
 
     public function __construct(stdClass $object)
     {

@@ -8,10 +8,10 @@ use stdClass;
 
 final class Message
 {
-    private $id;
-    private $date;
-    private $from;
-    private $chat;
+    private string $id;
+    private string $date;
+    private User $from;
+    private Chat $chat;
 
     public function __construct(stdClass $message)
     {

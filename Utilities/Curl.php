@@ -2,13 +2,14 @@
 
 namespace Phelegram\Utilities;
 
+use CurlHandle;
 use Exception;
 use InvalidArgumentException;
 
 final class Curl
 {
-    private $handle;
-    private $token;
+    private CurlHandle $handle;
+    private string $token;
     public const API = 'https://api.telegram.org/bot';
     public function __construct()
     {

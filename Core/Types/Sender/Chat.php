@@ -6,8 +6,8 @@ use stdClass;
 
 final class Chat extends Credentials
 {
-    private $type;
-    private $title;
+    private string $type;
+    private string $title;
 
     public function __construct(stdClass $chat)
     {

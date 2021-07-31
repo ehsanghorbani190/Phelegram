@@ -11,8 +11,8 @@ use Phelegram\Utilities\Env;
 
 class BaseBot
 {
-    private $debugID;
-    private $request;
+    private string $debugID;
+    private Curl $request;
 
     public function __construct()
     {
@@ -20,7 +20,6 @@ class BaseBot
         $this->request = new Curl();
     }
 
-    //main Commands
     public function getMe(): User
     {
         return new User(json_decode($this->request->getMethod('getMe')));

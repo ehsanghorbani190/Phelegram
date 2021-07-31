@@ -4,7 +4,7 @@ namespace Phelegram\Core\Types\Data;
 
 class Update
 {
-    private $id;
+    private string $id;
     private Message $message;
 
     public function __construct(string $update)

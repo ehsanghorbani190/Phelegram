@@ -6,10 +6,10 @@ namespace Phelegram\Core\Types\Keyboards;
 class ReplyKeyboard implements Keyboard
 {
     private $keyboard = [];
-    private $resize_keyboard = false;
-    private $one_time_keyboard = false;
-    private $selective = false;
-    private $input_field_placeholder;
+    private bool $resize_keyboard = false;
+    private bool $one_time_keyboard = false;
+    private bool $selective = false;
+    private string $input_field_placeholder;
 
     /**
      * A Keyboard that replies data and makes user interaction easier.

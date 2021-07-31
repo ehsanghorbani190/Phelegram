@@ -6,10 +6,10 @@ use stdClass;
 
 abstract class Credentials
 {
-    private $id;
-    private $fName;
-    private $lName;
-    private $userName;
+    private string $id;
+    private string $fName;
+    private string $lName;
+    private string $userName;
 
     public function __construct(stdClass $from)
     {
