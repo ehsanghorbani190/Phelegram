@@ -1,6 +1,6 @@
 <?php
 
-namespace Phelegram\Core\Types;
+namespace Phelegram\Core\Types\Media;
 
 use Phelegram\Utilities\Curl;
 use Phelegram\Utilities\Env;

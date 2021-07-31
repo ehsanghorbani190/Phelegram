@@ -1,6 +1,6 @@
 <?php
 
-namespace Phelegram\Core\Types;
+namespace Phelegram\Core\Types\Data;
 
 class Update
 {

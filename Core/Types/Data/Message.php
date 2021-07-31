@@ -1,6 +1,6 @@
 <?php
 
-namespace Phelegram\Core\Types;
+namespace Phelegram\Core\Types\Data;
 
 use Phelegram\Core\Types\Sender\Chat;
 use Phelegram\Core\Types\Sender\User;
