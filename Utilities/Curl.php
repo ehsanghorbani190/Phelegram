@@ -8,7 +8,7 @@ use InvalidArgumentException;
 
 final class Curl
 {
-    private CurlHandle $handle;
+    private $handle;
     private string $token;
     public const API = 'https://api.telegram.org/bot';
     public function __construct()
