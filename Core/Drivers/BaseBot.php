@@ -31,7 +31,7 @@ class BaseBot
      */
     public function getMe(): User
     {
-        return new User(json_decode($this->request->getMethod('getMe')));
+        return new User($this->request->getMethod('getMe'));
     }
 
     /**
@@ -53,7 +53,7 @@ class BaseBot
      */
     public function getUpdates(int $limit = 100)
     {
-        $res = json_decode($this->request->getMethod('getUpdates', ['limit' => $limit]));
+        $res = $this->request->getMethod('getUpdates', ['limit' => $limit]);
         $res = $res->result;
         $this->request->getMethod('getUpdates', ['offset' => end($res)->update_id + 1]);
         foreach ($res as $result) {
@@ -81,7 +81,7 @@ class BaseBot
         }
         $res = $this->request->getMethod('sendMessage', $options);
 
-        return json_decode($res)->ok or $this->debug(json_decode($res)->description);
+        return $res->ok or $this->debug($res->description);
     }
 
     /**
@@ -94,10 +94,10 @@ class BaseBot
      */
     public function deleteMessage(string $chatID, string $messageID): bool
     {
-        return json_decode($this->request->getMethod('deleteMessage', [
+        return $this->request->getMethod('deleteMessage', [
             'chat_id' => $chatID,
             'message_id' => $messageID,
-        ]))->ok;
+        ])->ok;
     }
 
     /**
@@ -109,7 +109,7 @@ class BaseBot
      */
     public function getFile(string $fileID): File
     {
-        $fileData = json_decode($this->request->getMethod('getFile', ['file_id' => $fileID]));
+        $fileData = $this->request->getMethod('getFile', ['file_id' => $fileID]);
 
         return new File($fileData->result);
     }

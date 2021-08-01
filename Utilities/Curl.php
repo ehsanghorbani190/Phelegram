@@ -5,6 +5,7 @@ namespace Phelegram\Utilities;
 use CurlHandle;
 use Exception;
 use InvalidArgumentException;
+use stdClass;
 
 final class Curl
 {
@@ -97,8 +98,8 @@ final class Curl
         return $res;
     }
 
-    public function getMethod(string $method, array $params = null, array $options = null) : string
+    public function getMethod(string $method, array $params = null, array $options = null) : stdClass
     {
-        return $this->get($this->methodURL($method,$params) , $options);
+        return json_decode($this->get($this->methodURL($method,$params) , $options));
     }
 }
