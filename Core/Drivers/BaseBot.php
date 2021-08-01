@@ -8,6 +8,7 @@ use Phelegram\Core\Types\Media\File;
 use Phelegram\Core\Types\Sender\User;
 use Phelegram\Utilities\Curl;
 use Phelegram\Utilities\Env;
+use RuntimeException;
 
 /**
  * Contains basic actions that every bot in Telegram should be able to do.
@@ -80,7 +81,7 @@ class BaseBot
         }
         $res = $this->request->getMethod('sendMessage', $options);
 
-        return json_decode($res)->ok;
+        return json_decode($res)->ok or $this->debug(json_decode($res)->description);
     }
 
     /**
