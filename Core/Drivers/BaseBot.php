@@ -8,7 +8,6 @@ use Phelegram\Core\Types\Media\File;
 use Phelegram\Core\Types\Sender\User;
 use Phelegram\Utilities\Curl;
 use Phelegram\Utilities\Env;
-use RuntimeException;
 
 /**
  * Contains basic actions that every bot in Telegram should be able to do.
@@ -31,7 +30,11 @@ class BaseBot
      */
     public function getMe(): User
     {
-        return new User($this->request->getMethod('getMe'));
+        $res = $this->request->getMethod('getMe');
+        if ($res->ok) {
+            return new User($res);
+        }
+        $this->debug($res->description);
     }
 
     /**
@@ -53,7 +56,7 @@ class BaseBot
      */
     public function getUpdates(int $limit = 100)
     {
-        $res = $this->request->getMethod('getUpdates', ['limit' => $limit]);
+        $res = $this->request->getMethod('getUpdates', ['limit' => ($limit <= 100 && $limit >= 1) ? $limit : 100]);
         $res = $res->result;
         $this->request->getMethod('getUpdates', ['offset' => end($res)->update_id + 1]);
         foreach ($res as $result) {
@@ -81,7 +84,7 @@ class BaseBot
         }
         $res = $this->request->getMethod('sendMessage', $options);
 
-        return $res->ok or $this->debug($res->description);
+        return $res->ok or $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
     }
 
     /**
@@ -94,10 +97,12 @@ class BaseBot
      */
     public function deleteMessage(string $chatID, string $messageID): bool
     {
-        return $this->request->getMethod('deleteMessage', [
+        $res = $this->request->getMethod('deleteMessage', [
             'chat_id' => $chatID,
             'message_id' => $messageID,
-        ])->ok;
+        ]);
+
+        return $res->ok or $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
     }
 
     /**
@@ -110,8 +115,10 @@ class BaseBot
     public function getFile(string $fileID): File
     {
         $fileData = $this->request->getMethod('getFile', ['file_id' => $fileID]);
-
-        return new File($fileData->result);
+        if ($fileData->ok) {
+            return new File($fileData->result);
+        }
+        $this->debug('Error Code: '.$fileData->error_code.'. Message: '.$fileData->description);
     }
 
     /**
