@@ -8,6 +8,7 @@ use Phelegram\Core\Types\Media\File;
 use Phelegram\Core\Types\Sender\User;
 use Phelegram\Utilities\Curl;
 use Phelegram\Utilities\Env;
+use RuntimeException;
 
 /**
  * Contains basic actions that every bot in Telegram should be able to do.
@@ -34,7 +35,9 @@ class BaseBot
         if ($res->ok) {
             return new User($res);
         }
-        $this->debug($res->description);
+        $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
+
+        throw new RuntimeException($res->description, $res->error_code);
     }
 
     /**
@@ -83,8 +86,11 @@ class BaseBot
             $options['reply_markup'] = $keyboard;
         }
         $res = $this->request->getMethod('sendMessage', $options);
+        if (!$res->ok) {
+            $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
+        }
 
-        return $res->ok or $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
+        return $res->ok;
     }
 
     /**
@@ -101,8 +107,11 @@ class BaseBot
             'chat_id' => $chatID,
             'message_id' => $messageID,
         ]);
+        if (!$res->ok) {
+            $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
+        }
 
-        return $res->ok or $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
+        return $res->ok;
     }
 
     /**
@@ -137,6 +146,8 @@ class BaseBot
             return new File($fileData->result);
         }
         $this->debug('Error Code: '.$fileData->error_code.'. Message: '.$fileData->description);
+
+        throw new RuntimeException($fileData->description, $fileData->error_code);
     }
 
     /**
