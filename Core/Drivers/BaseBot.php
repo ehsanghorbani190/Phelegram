@@ -106,6 +106,24 @@ class BaseBot
     }
 
     /**
+     * Forward a message (no matter what type it is).
+     *
+     * @param string $to        ID of the chat that message'll be forwarded to
+     * @param string $from      ID of the chat that contains the message
+     * @param string $messageID ID of message that'll be forwarded
+     * @param bool   $silent    If true, message'll be sent silently. Users will receive a notification with no sound.
+     */
+    public function forwardMessage(string $to, string $from, string $messageID, bool $silent = false): bool
+    {
+        $res = $this->request->getMethod('forwardMessage', ['chat_id' => $to, 'from_chat_id' => $from, 'message_id' => $messageID, 'disable_notification' => $silent]);
+        if (!$res->ok) {
+            $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
+        }
+
+        return $res->ok;
+    }
+
+    /**
      * Get info about a file that exists on Telegram clouds.
      *
      * @param string $fileID The file_id (not file_unique_id) returned from Telegram API(in a message)
