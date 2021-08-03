@@ -10,14 +10,12 @@ final class Message
 {
     private string $id;
     private string $date;
-    private User $from;
     private Chat $chat;
 
     public function __construct(stdClass $message)
     {
         $this->id = $message->message_id;
         $this->chat = new Chat($message->chat);
-        $this->from = new User($message->from);
         $this->date = gmdate('Y-m-d H:i:s', $message->date);
         unset($message->message_id, $message->chat, $message->from, $message->date);
 
@@ -29,9 +27,9 @@ final class Message
     /**
      * Get the value of from.
      */
-    public function getFrom(): User
+    public function getFrom(): ?User
     {
-        return $this->from;
+        return isset($this->from) ? new User($this->from) : null;
     }
 
     /**
