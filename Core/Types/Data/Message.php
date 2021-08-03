@@ -72,13 +72,23 @@ final class Message
         return $this->caption ?? null;
     }
 
-    /** */
-    public function getEntities()
+    /**
+     * Return all of entities in this message.
+     *
+     * @return Entity[]
+     */
+    public function getEntities(string $type = null)
     {
-        if(!isset($this->entities)) return false;
-        foreach($this->entities as $entity){
-            yield new Entity($entity);
+        if (!isset($this->entities)) {
+            return false;
         }
+        foreach ($this->entities as $entity) {
+            $ent = new Entity($entity);
+            if ($ent->getType() == ($type ?? $ent->getType())) {
+                yield $ent;
+            }
+        }
+
         return true;
     }
 }
