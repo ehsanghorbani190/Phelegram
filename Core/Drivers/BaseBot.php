@@ -5,6 +5,7 @@ namespace Phelegram\Core\Drivers;
 use Phelegram\Core\Types\Data\Update;
 use Phelegram\Core\Types\Keyboards\Keyboard;
 use Phelegram\Core\Types\Media\File;
+use Phelegram\Core\Types\Sender\Chat;
 use Phelegram\Core\Types\Sender\User;
 use Phelegram\Utilities\Curl;
 use Phelegram\Utilities\Env;
@@ -33,7 +34,25 @@ class BaseBot
     {
         $res = $this->request->getMethod('getMe');
         if ($res->ok) {
-            return new User($res);
+            return new User($res->result);
+        }
+        $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
+
+        throw new RuntimeException($res->description, $res->error_code);
+    }
+
+    /**
+     * Get information about a chat.
+     *
+     * @param string $id ID of the chat that you want information about
+     *
+     * @return Chat Information about the chat
+     */
+    public function getChat(string $id): Chat
+    {
+        $res = $this->request->getMethod('getChat', ['chat_id' => $id]);
+        if ($res->ok) {
+            return new Chat($res->result);
         }
         $this->debug('Error Code: '.$res->error_code.'. Message: '.$res->description);
 
