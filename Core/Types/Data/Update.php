@@ -2,14 +2,15 @@
 
 namespace Phelegram\Core\Types\Data;
 
+use stdClass;
+
 class Update
 {
     private string $id;
     private Message $message;
 
-    public function __construct(string $update)
+    public function __construct(stdClass $update)
     {
-        $update = json_decode($update);
         $this->id = $update->update_id;
         $message = $update->message ?? $update->edited_message ?? $update->channel_post ?? $update->edited_channel_post;
         $this->message = (null != $message) ? new Message($message) : null;

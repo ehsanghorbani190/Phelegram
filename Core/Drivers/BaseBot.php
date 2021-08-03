@@ -66,7 +66,7 @@ class BaseBot
      */
     public function getUpdate(): Update
     {
-        return new Update(file_get_contents('php://input'));
+        return new Update(json_decode(file_get_contents('php://input')));
     }
 
     /**
@@ -78,11 +78,10 @@ class BaseBot
      */
     public function getUpdates(int $limit = 100)
     {
-        $res = $this->request->getMethod('getUpdates', ['limit' => ($limit <= 100 && $limit >= 1) ? $limit : 100]);
-        $res = $res->result;
+        $res = $this->request->getMethod('getUpdates', ['limit' => ($limit <= 100 && $limit >= 1) ? $limit : 100])->result;
         $this->request->getMethod('getUpdates', ['offset' => end($res)->update_id + 1]);
         foreach ($res as $result) {
-            yield new Update(json_encode($result));
+            yield new Update($result);
         }
     }
 
