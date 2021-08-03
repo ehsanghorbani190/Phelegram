@@ -71,4 +71,14 @@ final class Message
     {
         return $this->caption ?? null;
     }
+
+    /** */
+    public function getEntities()
+    {
+        if(!isset($this->entities)) return false;
+        foreach($this->entities as $entity){
+            yield new Entity($entity);
+        }
+        return true;
+    }
 }
