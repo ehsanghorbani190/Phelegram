@@ -92,10 +92,11 @@ class BaseBot
      * @param string   $text     the text to send
      * @param string   $chatId   ID of the chat to send message in ,In case of Channels it would be like @ChannelUserName
      * @param Keyboard $keyboard reply_markup to send, see their description when you create one
+     * @param string   $replyTo  ID of the message that new message'll be a reply to it
      *
      * @return bool shows if message was sent or not
      */
-    public function sendMessage(string $text, string $chatId, Keyboard $keyboard = null): bool
+    public function sendMessage(string $text, string $chatId, Keyboard $keyboard = null, string $replyTo = null): bool
     {
         $options = [
             'chat_id' => $chatId,
@@ -103,6 +104,9 @@ class BaseBot
         ];
         if (null != $keyboard) {
             $options['reply_markup'] = $keyboard;
+        }
+        if (null != $replyTo) {
+            $options['reply_to_message_id'] = $replyTo;
         }
         $res = $this->request->getMethod('sendMessage', $options);
         if (!$res->ok) {
