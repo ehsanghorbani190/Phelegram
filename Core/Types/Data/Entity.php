@@ -2,11 +2,10 @@
 
 namespace Phelegram\Core\Types\Data;
 
-use JsonSerializable;
 use Phelegram\Core\Types\Sender\User;
 use stdClass;
 
-class Entity implements JsonSerializable
+class Entity
 {
     private string $type;
     private int $offset;
@@ -14,12 +13,14 @@ class Entity implements JsonSerializable
     private string $url;
     private stdClass $user;
     private string $language;
+    private string $text;
 
-    public function __construct(stdClass $entity)
+    public function __construct(stdClass $entity, string $messageText)
     {
         foreach ($entity as $key => $value) {
             $this->{$key} = $value;
         }
+        $this->text = substr($messageText, $this->offset, $this->length);
     }
 
     /**
@@ -74,8 +75,11 @@ class Entity implements JsonSerializable
         return isset($this->language) ? $this->language : null;
     }
 
-    public function jsonSerialize()
+    /**
+     * Get entity's text.
+     */
+    public function getText(): string
     {
-        return get_object_vars($this);
+        return $this->text;
     }
 }

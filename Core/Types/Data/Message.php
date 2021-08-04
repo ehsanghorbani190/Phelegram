@@ -83,7 +83,7 @@ final class Message
             return false;
         }
         foreach ($this->entities as $entity) {
-            $ent = new Entity($entity);
+            $ent = new Entity($entity , $this->getText());
             if ($ent->getType() == ($type ?? $ent->getType())) {
                 yield $ent;
             }
