@@ -36,15 +36,19 @@ Well, I've got some very good reasons :
 
 Installation is as simple as possible.
 
-1. Require via Composer:
+1. Create a project with Composer :
 
     ```bash
     composer create-project timerunner2359/phelegram
     ```
 
-2. Replace default values  in ``.env`` with your bot token and your chatID( as debug ).
+    You'll be asked to enter your bot token and your chatID.
 
-3. Make Magic Happen in ``index.php`` file 😉
+    Your bot's token is available in [@BotFather](https://t.me/botfather).
+
+    You can get your chatID via [@GetMeMyChatIDBot](https://t.me/GetMeMyChatIDBot)
+
+2. Make Magic Happen in ``index.php`` file 😉
 
 ## How to use
 
