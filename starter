@@ -1,0 +1,8 @@
+<?php
+echo "Enter the token you got from BotFather: ";
+$token = readline();
+echo "Enter your chatID you got from @GetMeMyChatIDBot: ";
+$id = readline();
+$file = fopen(".env" , "w");
+fwrite($file , '$TOKEN='.$token."\n".'$DEBUG='.$id);
+unlink(__FILE__);

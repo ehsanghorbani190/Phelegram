@@ -19,7 +19,7 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "php -r \"file_exists('.env') || rename('.env.example', '.env');\"",
+            "php starter",
             "mkdir Storage"
         ],
         "post-install-cmd": [

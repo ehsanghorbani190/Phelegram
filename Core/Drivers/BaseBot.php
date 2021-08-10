@@ -193,6 +193,6 @@ class BaseBot
      */
     public function debug(string $text): bool
     {
-        return ('null' != $this->debugID) ? $this->sendMessage(urlencode("***DEBUG LOG*** \n".$text), $this->debugID) : false;
+        return $this->sendMessage(urlencode("***DEBUG LOG*** \n".$text), $this->debugID);
     }
 }
