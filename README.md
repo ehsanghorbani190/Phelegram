@@ -1,14 +1,6 @@
-
-<div align="center">
+# Phelegram ![License](https://img.shields.io/github/license/ehsanghorbani190/Phelegram?style=for-the-badge) ![Code Size](https://img.shields.io/github/languages/code-size/ehsanghorbani190/Phelegram?style=for-the-badge) ![Downloads](https://img.shields.io/packagist/dt/timerunner2359/phelegram?style=for-the-badge)
 
 ![Logo](Logo.png)
-
-# Phelegram
-
-![License](https://img.shields.io/github/license/ehsanghorbani190/Phelegram?style=for-the-badge)
-![Code Size](https://img.shields.io/github/languages/code-size/ehsanghorbani190/Phelegram?style=for-the-badge)
-![Downloads](https://img.shields.io/packagist/dt/timerunner2359/phelegram?style=for-the-badge)
-</div>
 
 A simple (yet feature-rich) solution for developing Telegram bots!</br>
 this is a mini framework ( or you may call it library ) to make simple or complex telegram bots easily and without getting your hands dirty with Telegram API manualy 😀</br>
