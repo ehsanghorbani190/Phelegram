@@ -19,8 +19,7 @@
     },
     "scripts": {
         "post-root-package-install": [
-            "php starter",
-            "mkdir Storage"
+            "php starter"
         ],
         "post-install-cmd": [
             "composer dump-autoload"
